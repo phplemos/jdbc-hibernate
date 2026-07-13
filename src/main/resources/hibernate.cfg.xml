@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration SYSTEM
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+        <!-- Configurações de Conexão com o Banco de Dados -->
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/lp3_comercial</property>
+        <property name="hibernate.connection.username">postgres</property>
+        <property name="hibernate.connection.password">password</property>
+
+        <!-- Configurações do Pool de Conexões (Padrão do Hibernate) -->
+        <property name="hibernate.connection.pool_size">5</property>
+
+        <!-- Dialeto SQL para PostgreSQL -->
+        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+
+        <!-- Gerenciamento de Sessão -->
+        <property name="hibernate.current_session_context_class">thread</property>
+
+        <!-- Exibição de SQL Executado -->
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.format_sql">true</property>
+
+        <!-- Mapeamento das Entidades (Comentar/descomentar conforme o desenvolvimento) -->
+        <!-- 
+        <mapping class="model.Cliente"/>
+        <mapping class="model.Produto"/>
+        <mapping class="model.Estoque"/>
+        <mapping class="model.Venda"/>
+        <mapping class="model.ItemVenda"/>
+        -->
+    </session-factory>
+</hibernate-configuration>
