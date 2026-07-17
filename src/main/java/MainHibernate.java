@@ -1,8 +1,9 @@
 
-import dao.jdbc.ClienteDAOJDBC;
-import dao.jdbc.EstoqueDAOJDBC;
-import dao.jdbc.ProdutoDAOJDBC;
-import dao.jdbc.VendaDAOJDBC;
+import dao.hibernate.ClienteDAOHibernate;
+import dao.hibernate.EstoqueDAOHibernate;
+import dao.hibernate.ProdutoDAOHibernate;
+import dao.hibernate.HibernateUtil;
+import dao.hibernate.VendaDAOHibernate;
 import exception.NegocioException;
 import model.Cliente;
 import model.Estoque;
@@ -24,18 +25,18 @@ import java.util.Scanner;
 /**
  * Ponto de entrada da aplicação (versão JDBC).
  */
-public class Main {
+public class MainHibernate {
  
     private static final Scanner scanner = new Scanner(System.in);
     private static final DateTimeFormatter FORMATO_DATA = DateTimeFormatter.ofPattern("dd/MM/yyyy");
  
-    private static final ClienteService clienteService = new ClienteService(new ClienteDAOJDBC());
-    private static final ProdutoService produtoService = new ProdutoService(new ProdutoDAOJDBC(), new EstoqueDAOJDBC());
-    private static final EstoqueService estoqueService = new EstoqueService(new EstoqueDAOJDBC());
-    private static final VendaService vendaService = new VendaService(new VendaDAOJDBC(), estoqueService);
+    private static final ClienteService clienteService = new ClienteService(new ClienteDAOHibernate());
+    private static final ProdutoService produtoService = new ProdutoService(new ProdutoDAOHibernate(), new EstoqueDAOHibernate());
+    private static final EstoqueService estoqueService = new EstoqueService(new EstoqueDAOHibernate());
+    private static final VendaService vendaService = new VendaService(new VendaDAOHibernate(), estoqueService);
  
     public static void main(String[] args) {
-        System.out.println("SISTEMA DE GESTAO COMERCIAL (versao JDBC)");
+        System.out.println("SISTEMA DE GESTAO COMERCIAL (versao Hibernate)");
         boolean continuar = true;
  
         while (continuar) {
@@ -65,6 +66,7 @@ public class Main {
             }
         }
  
+        HibernateUtil.shutdown();
         System.out.println("Encerrando o sistema.");
     }
  
