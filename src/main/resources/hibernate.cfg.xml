@@ -1,35 +1,34 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE hibernate-configuration SYSTEM
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
-
 <hibernate-configuration>
     <session-factory>
-        <!-- Configurações de Conexão com o Banco de Dados -->
-        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/lp3_comercial</property>
-        <property name="hibernate.connection.username">postgres</property>
-        <property name="hibernate.connection.password">password</property>
-
-        <!-- Configurações do Pool de Conexões (Padrão do Hibernate) -->
-        <property name="hibernate.connection.pool_size">5</property>
-
-        <!-- Dialeto SQL para PostgreSQL -->
-        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
-
-        <!-- Gerenciamento de Sessão -->
-        <property name="hibernate.current_session_context_class">thread</property>
-
-        <!-- Exibição de SQL Executado -->
+ 
+        <!-- Configuração da conexão com o MySQL -->
+        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/gestao_comercial?useSSL=false&amp;serverTimezone=UTC</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">936558Ma#</property>
+ 
+        <!-- Dialeto: ensina o Hibernate a "falar" a sintaxe SQL específica do MySQL -->
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+ 
+        <!-- Mostra no console o SQL gerado pelo Hibernate (ótimo para aprender e depurar) -->
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.format_sql">true</property>
-
-        <!-- Mapeamento das Entidades (Comentar/descomentar conforme o desenvolvimento) -->
-        <!-- 
+ 
+        <!-- "validate" confere se as entidades batem com as tabelas já existentes,
+             sem alterar o banco. Como já criamos as tabelas pelo schema.sql, isso é o ideal. -->
+        <property name="hibernate.hbm2ddl.auto">validate</property>
+ 
+        <!-- Mapeamento das entidades -->
         <mapping class="model.Cliente"/>
         <mapping class="model.Produto"/>
         <mapping class="model.Estoque"/>
         <mapping class="model.Venda"/>
         <mapping class="model.ItemVenda"/>
-        -->
+ 
     </session-factory>
 </hibernate-configuration>
+ 

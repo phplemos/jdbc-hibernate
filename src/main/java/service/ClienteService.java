@@ -10,7 +10,7 @@ public class ClienteService {
     private static final Pattern REGEX_EMAIL =
             Pattern.compile("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$");
     private static final Pattern REGEX_CPF =
-            Pattern.compile("^\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}$");
+    		Pattern.compile("^\\d{11}$");
     private final ClienteDAO dao;
 
     public ClienteService(ClienteDAO dao) {
